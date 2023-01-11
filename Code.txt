@@ -1,0 +1,67 @@
+char t;
+int m1 = 10;
+int m2 = 11;
+int m3 = 12;
+int m4 = 13;
+
+void setup() {
+
+    pinMode(m1, OUTPUT);
+    pinMode(m2, OUTPUT); 
+    pinMode(m3, OUTPUT);
+    pinMode(m4, OUTPUT);
+  
+  Serial.begin(9600);// initialize serial monitor with 9600 baud
+  Serial.println("Robojax Motor Direction of Rotation");
+  Serial.println("Using 2 Relays");  
+
+}
+
+void loop() {
+if(Serial.available()){
+  t = Serial.read();
+  Serial.println(t);
+}
+if(t == 'F'){ 
+ // Rotate in CCW direction
+  digitalWrite(m1, LOW);
+  digitalWrite(m2, HIGH);  
+  digitalWrite(m3, HIGH);
+  digitalWrite(m4, LOW); 
+ }
+
+else if(t == 'B'){ 
+
+
+  digitalWrite(m1, HIGH);
+  digitalWrite(m2, LOW);
+  digitalWrite(m3, LOW);
+  digitalWrite(m4, HIGH);
+
+}
+else if(t == 'R'){ 
+  digitalWrite(m1, LOW);
+  digitalWrite(m2, HIGH);  
+  digitalWrite(m3, LOW);
+  digitalWrite(m4, HIGH);
+  
+}
+else if(t == 'L'){ 
+  digitalWrite(m1, HIGH);
+  digitalWrite(m2, LOW);  
+  digitalWrite(m3, HIGH);
+  digitalWrite(m4, LOW);
+  
+}
+
+
+
+ else if(t == 'S'){
+ // stop the motor
+
+  digitalWrite(m1, HIGH);
+  digitalWrite(m2, HIGH);  
+  digitalWrite(m3, HIGH);
+  digitalWrite(m4, HIGH);
+ }  
+}// loop end \
